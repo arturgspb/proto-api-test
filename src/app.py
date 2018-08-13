@@ -3,8 +3,12 @@ import time
 
 import grpc
 
+print("Start server 1")
+
 from src import hello_pb2_grpc
 from src import hello_pb2
+
+print("Start server 2")
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -30,5 +34,5 @@ def serve(port: int, grace_period: int):
 
 
 if __name__ == '__main__':
-    print("Start server")
+    print("Start server 3")
     serve(50051, 5)
