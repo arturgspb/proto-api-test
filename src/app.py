@@ -30,9 +30,9 @@ def serve(port: int, grace_period: int):
     server.add_insecure_port('[::]:{}'.format(port))
     print("Start server 4")
     time.sleep(5)
-    exit(1)
     server.start()
     print("Start server 5")
+    exit(1)
 
     try:
         while True:
