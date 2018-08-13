@@ -5,6 +5,9 @@ import grpc
 
 print("Start server 1")
 
+time.sleep(5)
+exit(1)
+
 from src import hello_pb2_grpc
 from src import hello_pb2
 
