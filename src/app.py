@@ -16,19 +16,19 @@ class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
         return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name)
 
 
-def serve():
+def serve(port: int, grace_period: int):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     hello_pb2_grpc.add_HelloServiceServicer_to_server(
         RouteGuideServicer(), server)
-    server.add_insecure_port('0.0.0.0:50051')
+    server.add_insecure_port('[::]:{}'.format(port))
     server.start()
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
-        server.stop(0)
+        server.stop(grace_period)
 
 
 if __name__ == '__main__':
     print("Start server")
-    serve()
+    serve(50051, 5)
