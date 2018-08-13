@@ -12,6 +12,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
 
     def Echo(self, request: hello_pb2.EchoRequest, context):
+        print("Echo req")
         return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name)
 
 
@@ -29,4 +30,5 @@ def serve():
 
 
 if __name__ == '__main__':
+    print("Start server")
     serve()
