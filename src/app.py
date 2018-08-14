@@ -17,6 +17,7 @@ class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
 
     def Echo(self, request: hello_pb2.EchoRequest, context):
         print("Echo req")
+        print(u"context.invocation_metadata() = %s" % str(context.invocation_metadata()))
         return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name)
 
 
