@@ -1,0 +1,51 @@
+# https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/endpoints/kubernetes/k8s-grpc-bookstore.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-hello
+spec:
+  ports:
+  - port: 80
+    targetPort: 9000
+    protocol: TCP
+    name: http2
+  selector:
+    app: grpc-hello
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grpc-hello
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grpc-hello
+    spec:
+      volumes:
+        - name: service-account-creds
+          secret:
+            secretName: service-account-creds
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: esp
+        image: gcr.io/endpoints-release/endpoints-runtime:1
+        args: [
+          "--http2_port=9000",
+          "--backend=grpc://127.0.0.1:50051",
+          "--service=bookstore.endpoints.meta-test-164215.cloud.goog",
+          "--service_account_key=/etc/nginx/creds/service-account-creds.json",
+          "--rollout_strategy=managed",
+        ]
+        ports:
+          - containerPort: 9000
+        volumeMounts:
+          - mountPath: /etc/nginx/creds
+            name: service-account-creds
+            readOnly: true
+      - name: python-grpc-hello
+        image: apisgarpun/apis:apiproxyt--v1-latest
+        ports:
+          - containerPort: 50051

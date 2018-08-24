@@ -24,3 +24,9 @@ dev:
 		--service_account_key=/esp/test-esp-service-account-creds.json
 
 	docker rm esp
+
+kube:
+	kubectl apply -f deployment.yaml
+
+ingress:
+	kubectl create -f ingress.yaml

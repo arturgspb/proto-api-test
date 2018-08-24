@@ -56,8 +56,9 @@ def run():
     # channel = grpc.insecure_channel('localhost:12345')
     # channel = grpc.insecure_channel('localhost:50051')
     # channel = grpc.insecure_channel('apiproxyt.apis.kb2.1ad.ru:50051')
-    channel = grpc.insecure_channel('localhost:8083')
-    # channel = grpc.insecure_channel('grpc-test.kb2.1ad.ru:50051')
+    # channel = grpc.insecure_channel('localhost:8083')
+    channel = grpc.insecure_channel('books.grpc.kb2.1ad.ru:50051')
+    # channel = grpc.insecure_channel('n4.adp.vmc.loc:30313')
     # channel = grpc.insecure_channel('n2.adp.vmc.loc:31846')
     stub = hello_pb2_grpc.HelloServiceStub(channel)
 
@@ -68,11 +69,16 @@ def run():
     metadata = [("authorization", "Bearer " + auth_token)]
 
     def do_req():
-        resp = stub.Echo(
-            hello_pb2.EchoRequest(name="Artur!")
+        # resp = stub.Echo(
+        #     hello_pb2.EchoRequest(name="Artur!")
+        #     , metadata=metadata
+        # )
+        # print(resp)
+        resp = stub.Ping(
+            hello_pb2.PingRequest(ping="lala")
             , metadata=metadata
         )
-        print(resp)
+        print(u"resp = %s" % str(resp))
 
     for t in range(50):
         do_req()
