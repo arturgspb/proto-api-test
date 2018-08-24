@@ -63,6 +63,7 @@ def run():
 
     # metadata = [("x-api-key", "AIzaSyBOvwjnUe4CDrmm7RftN4QhRg_J2a-TpL4")]
     auth_token = get_token()
+    print(auth_token)
 
     metadata = [("authorization", "Bearer " + auth_token)]
 
@@ -73,8 +74,8 @@ def run():
         )
         print(resp)
 
-    # do_req()
-    do_req()
+    for t in range(50):
+        do_req()
 
 
 if __name__ == '__main__':

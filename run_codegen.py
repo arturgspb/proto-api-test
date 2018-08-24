@@ -3,8 +3,8 @@ from grpc_tools import protoc
 protoc.main((
     '',
     '-I./protos',
-    '--python_out=./gen',
-    '--grpc_python_out=./gen',
-    '--mypy_out=./gen',
+    '--python_out=./src',
+    '--grpc_python_out=./src',
+    '--mypy_out=./src',
     './protos/hello.proto',
 ))

@@ -3,17 +3,27 @@ syntax = "proto3";
 package helloapi;
 option java_multiple_files = true;
 
+service HelloService {
+    rpc Echo (EchoRequest) returns (EchoResponse) {
+    }
+
+    rpc Ping (PingRequest) returns (PingResponse) {
+    }
+}
 
 message EchoRequest {
-  string name = 1;
+    string name = 1;
 }
 
 message EchoResponse {
-  string server_id = 1;
-  string name = 2;
+    string server_id = 1;
+    string name = 2;
 }
 
-service HelloService {
-  rpc Echo(EchoRequest) returns (EchoResponse) {
-  }
+message PingRequest {
+    string ping = 1;
+}
+
+message PingResponse {
+    string ping = 1;
 }

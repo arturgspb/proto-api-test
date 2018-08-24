@@ -16,6 +16,9 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
+    def Ping(self, request: hello_pb2.PingRequest, context):
+        return hello_pb2.PingResponse(ping="pong!")
+
     def Echo(self, request: hello_pb2.EchoRequest, context):
         print("Echo req")
         user_info = None

@@ -28,6 +28,28 @@ class EchoResponse(google.protobuf.message.Message):
     def MergeFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
     def CopyFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
 
+class PingRequest(google.protobuf.message.Message):
+    ping = ... # type: typing.Text
+
+    def __init__(self,
+        ping : typing.Optional[typing.Text] = None,
+        ) -> None: ...
+    @classmethod
+    def FromString(cls, s: bytes) -> PingRequest: ...
+    def MergeFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+    def CopyFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+
+class PingResponse(google.protobuf.message.Message):
+    ping = ... # type: typing.Text
+
+    def __init__(self,
+        ping : typing.Optional[typing.Text] = None,
+        ) -> None: ...
+    @classmethod
+    def FromString(cls, s: bytes) -> PingResponse: ...
+    def MergeFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+    def CopyFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+
 class HelloService(typing.Any, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def Echo(self,
@@ -35,6 +57,12 @@ class HelloService(typing.Any, metaclass=abc.ABCMeta):
         request: EchoRequest,
         done: typing.Optional[typing.Callable[[EchoResponse], None]],
     ) -> concurrent.futures.Future[EchoResponse]: ...
+    @abc.abstractmethod
+    def Ping(self,
+        rpc_controller: typing.Any,
+        request: PingRequest,
+        done: typing.Optional[typing.Callable[[PingResponse], None]],
+    ) -> concurrent.futures.Future[PingResponse]: ...
 class HelloService_Stub(HelloService):
     def __init__(self, rpc_channel: typing.Any) -> None: ...
     def Echo(self,
@@ -42,3 +70,8 @@ class HelloService_Stub(HelloService):
         request: EchoRequest,
         done: typing.Optional[typing.Callable[[EchoResponse], None]],
     ) -> concurrent.futures.Future[EchoResponse]: ...
+    def Ping(self,
+        rpc_controller: typing.Any,
+        request: PingRequest,
+        done: typing.Optional[typing.Callable[[PingResponse], None]],
+    ) -> concurrent.futures.Future[PingResponse]: ...

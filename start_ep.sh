@@ -8,15 +8,6 @@
 # https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
 # https://cloud.google.com/endpoints/docs/grpc/authentication-method
 
-#python -m grpc.tools.protoc \
-#    --include_imports \
-#    --include_source_info \
-#    --proto_path=protos \
-#    --descriptor_set_out=api_descriptor.pb \
-#    hello.proto
-
-# gcloud endpoints services deploy api_descriptor.pb api_config.yaml --project meta-test-164215
-
 docker run \
     --name="esp" \
     --publish=8083:8083 \

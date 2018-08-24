@@ -19,6 +19,11 @@ class HelloServiceStub(object):
         request_serializer=hello__pb2.EchoRequest.SerializeToString,
         response_deserializer=hello__pb2.EchoResponse.FromString,
         )
+    self.Ping = channel.unary_unary(
+        '/helloapi.HelloService/Ping',
+        request_serializer=hello__pb2.PingRequest.SerializeToString,
+        response_deserializer=hello__pb2.PingResponse.FromString,
+        )
 
 
 class HelloServiceServicer(object):
@@ -32,6 +37,13 @@ class HelloServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Ping(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_HelloServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -39,6 +51,11 @@ def add_HelloServiceServicer_to_server(servicer, server):
           servicer.Echo,
           request_deserializer=hello__pb2.EchoRequest.FromString,
           response_serializer=hello__pb2.EchoResponse.SerializeToString,
+      ),
+      'Ping': grpc.unary_unary_rpc_method_handler(
+          servicer.Ping,
+          request_deserializer=hello__pb2.PingRequest.FromString,
+          response_serializer=hello__pb2.PingResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
