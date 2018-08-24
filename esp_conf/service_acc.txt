@@ -1,0 +1,13 @@
+gcloud iam service-accounts create test-esp --display-name "My Service Account"
+
+
+gcloud iam service-accounts keys create ~/test-esp-service-account-creds.json --iam-account test-esp@meta-test-164215.iam.gserviceaccount.com
+
+
+gcloud projects add-iam-policy-binding meta-test-164215 \
+    --member serviceAccount:test-esp@meta-test-164215.iam.gserviceaccount.com \
+    --role roles/servicemanagement.serviceController
+
+gcloud projects add-iam-policy-binding meta-test-164215 \
+    --member serviceAccount:test-esp@meta-test-164215.iam.gserviceaccount.com \
+    --role roles/cloudtrace.agent

@@ -1,3 +1,5 @@
+import base64
+import json
 from concurrent import futures
 import time
 
@@ -14,11 +16,17 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
-
     def Echo(self, request: hello_pb2.EchoRequest, context):
         print("Echo req")
-        print(u"context.invocation_metadata() = %s" % str(context.invocation_metadata()))
-        return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name)
+        user_info = None
+        imd = context.invocation_metadata()
+        for md in imd:
+            if md.key == 'x-endpoint-api-userinfo':
+                user_info = json.loads(base64.b64decode(md.value))
+                print(u"md.value = %s" % str())
+        print(u"user_info = %s" % str(user_info))
+        email = user_info['email']
+        return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name + ". Email: " + email)
 
 
 def serve(port: int, grace_period: int):
