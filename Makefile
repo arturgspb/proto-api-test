@@ -31,7 +31,9 @@ dev:
 	docker rm esp
 
 kube:
+	kubectl delete deployment grpc-hello
 	kubectl apply -f deployment.yaml
 
-ingress:
+ing:
+	#kubectl delete ingress grpc-hello-service
 	kubectl create -f ingress.yaml

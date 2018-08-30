@@ -2,10 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: grpc-hello
+  name: grpc-hello-service
+  labels:
+    app: grpc-hello
+    release: grpc-hello
 spec:
   ports:
-  - port: 80
+  - port: 9994
     targetPort: 9000
     protocol: TCP
     name: http
@@ -22,6 +25,7 @@ spec:
     metadata:
       labels:
         app: grpc-hello
+        release: grpc-hello
     spec:
       volumes:
         - name: service-account-creds
@@ -33,7 +37,7 @@ spec:
       - name: esp
         image: gcr.io/endpoints-release/endpoints-runtime:1
         args: [
-          "--http2_port=9000",
+          "--http_port=9000",
           "--backend=grpc://127.0.0.1:50051",
           "--service=bookstore.endpoints.meta-test-164215.cloud.goog",
           "--service_account_key=/etc/nginx/creds/service-account-creds.json",

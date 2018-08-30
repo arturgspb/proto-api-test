@@ -1,18 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: grpc-hello-ingress
+  name: grpc-hello-service
   namespace: grpc
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.org/grpc-services: "grpc-hello"
-    nginx.ingress.kubernetes.io/grpc-backend: "true"
+  labels:
+    app: grpc-hello
+    release: grpc-hello
 spec:
   rules:
-  - host: books.grpc.kb3.1ad.ru
+  - host: books.grpc.kb.1ad.ru
     http:
       paths:
       - path: /
         backend:
-          serviceName: grpc-hello
-          servicePort: 80
+          serviceName: grpc-hello-service
+          servicePort: 9994
