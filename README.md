@@ -7,6 +7,10 @@
 
 
 ### Docs
+
+IMPORTANT! https://cloud.google.com/endpoints/docs/grpc/transcoding
+
+
 https://cloud.google.com/endpoints/docs/grpc/configure-endpoints
 https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/endpoints/getting-started-grpc/
 https://cloud.google.com/endpoints/docs/grpc/running-esp-localdev
