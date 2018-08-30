@@ -5,17 +5,14 @@ import time
 
 import grpc
 
-print("Start server 1")
-
 from src import hello_pb2_grpc
 from src import hello_pb2
-
-print("Start server 2")
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
+
     def Ping(self, request: hello_pb2.PingRequest, context):
         return hello_pb2.PingResponse(ping="pong!")
 
@@ -28,7 +25,10 @@ class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
                 user_info = json.loads(base64.b64decode(md.value))
                 print(u"md.value = %s" % str())
         print(u"user_info = %s" % str(user_info))
+
+
         email = user_info['email']
+
         return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name + ". Email: " + email)
 
 
@@ -37,9 +37,7 @@ def serve(port: int, grace_period: int):
     hello_pb2_grpc.add_HelloServiceServicer_to_server(
         RouteGuideServicer(), server)
     server.add_insecure_port('[::]:{}'.format(port))
-    print("Start server 4")
     server.start()
-    print("Start server 5")
 
     try:
         while True:
@@ -49,6 +47,4 @@ def serve(port: int, grace_period: int):
 
 
 if __name__ == '__main__':
-    print("Start server 3")
-
     serve(50051, 5)

@@ -8,7 +8,7 @@ spec:
   - port: 80
     targetPort: 9000
     protocol: TCP
-    name: http2
+    name: http
   selector:
     app: grpc-hello
 ---

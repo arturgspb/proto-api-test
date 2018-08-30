@@ -13,14 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='hello.proto',
   package='helloapi',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bhello.proto\x12\x08helloapi\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\x80\x01\n\x0cHelloService\x12\x37\n\x04\x45\x63ho\x12\x15.helloapi.EchoRequest\x1a\x16.helloapi.EchoResponse\"\x00\x12\x37\n\x04Ping\x12\x15.helloapi.PingRequest\x1a\x16.helloapi.PingResponse\"\x00\x42\x02P\x01\x62\x06proto3')
-)
+  serialized_pb=_b('\n\x0bhello.proto\x12\x08helloapi\x1a\x1cgoogle/api/annotations.proto\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xb2\x01\n\x0cHelloService\x12P\n\x04\x45\x63ho\x12\x15.helloapi.EchoRequest\x1a\x16.helloapi.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/echo:\x01*\x12P\n\x04Ping\x12\x15.helloapi.PingRequest\x1a\x16.helloapi.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/ping:\x01*B\x02P\x01\x62\x06proto3')
+  ,
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
 
 
@@ -51,8 +53,8 @@ _ECHOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25,
-  serialized_end=52,
+  serialized_start=55,
+  serialized_end=82,
 )
 
 
@@ -89,8 +91,8 @@ _ECHORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=54,
-  serialized_end=101,
+  serialized_start=84,
+  serialized_end=131,
 )
 
 
@@ -120,8 +122,8 @@ _PINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=103,
-  serialized_end=130,
+  serialized_start=133,
+  serialized_end=160,
 )
 
 
@@ -151,8 +153,8 @@ _PINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=132,
-  serialized_end=160,
+  serialized_start=162,
+  serialized_end=190,
 )
 
 DESCRIPTOR.message_types_by_name['EchoRequest'] = _ECHOREQUEST
@@ -199,8 +201,8 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=163,
-  serialized_end=291,
+  serialized_start=193,
+  serialized_end=371,
   methods=[
   _descriptor.MethodDescriptor(
     name='Echo',
@@ -209,7 +211,7 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ECHOREQUEST,
     output_type=_ECHORESPONSE,
-    options=None,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\023\"\016/v1/hello/echo:\001*')),
   ),
   _descriptor.MethodDescriptor(
     name='Ping',
@@ -218,7 +220,7 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_PINGREQUEST,
     output_type=_PINGRESPONSE,
-    options=None,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\023\"\016/v1/hello/ping:\001*')),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_HELLOSERVICE)

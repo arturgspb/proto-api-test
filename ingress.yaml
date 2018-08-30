@@ -8,11 +8,8 @@ metadata:
     nginx.org/grpc-services: "grpc-hello"
     nginx.ingress.kubernetes.io/grpc-backend: "true"
 spec:
-  tls:
-  - hosts:
-    - books.grpc.kb2.1ad.ru
   rules:
-  - host: grpc.example.com
+  - host: books.grpc.kb3.1ad.ru
     http:
       paths:
       - path: /

@@ -5,8 +5,9 @@ import hello_pb2 as hello__pb2
 
 
 class HelloServiceStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """https://cloud.google.com/endpoints/docs/grpc/transcoding
+  curl -d '{"ping":"Music"}' http://localhost:8083/v1/hello/ping
+  """
 
   def __init__(self, channel):
     """Constructor.
@@ -27,8 +28,9 @@ class HelloServiceStub(object):
 
 
 class HelloServiceServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+  """https://cloud.google.com/endpoints/docs/grpc/transcoding
+  curl -d '{"ping":"Music"}' http://localhost:8083/v1/hello/ping
+  """
 
   def Echo(self, request, context):
     # missing associated documentation comment in .proto file

@@ -3,11 +3,23 @@ syntax = "proto3";
 package helloapi;
 option java_multiple_files = true;
 
+import "google/api/annotations.proto";
+
+// https://cloud.google.com/endpoints/docs/grpc/transcoding
+// curl -d '{"ping":"Music"}' http://localhost:8083/v1/hello/ping
 service HelloService {
     rpc Echo (EchoRequest) returns (EchoResponse) {
+        option (google.api.http) = {
+          post: "/v1/hello/echo"
+          body: "*"
+        };
     }
 
     rpc Ping (PingRequest) returns (PingResponse) {
+        option (google.api.http) = {
+          post: "/v1/hello/ping"
+          body: "*"
+        };
     }
 }
 

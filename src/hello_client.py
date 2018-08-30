@@ -53,13 +53,8 @@ def get_token():
 
 
 def run():
-    # channel = grpc.insecure_channel('localhost:12345')
-    # channel = grpc.insecure_channel('localhost:50051')
-    # channel = grpc.insecure_channel('apiproxyt.apis.kb2.1ad.ru:50051')
-    # channel = grpc.insecure_channel('localhost:8083')
-    channel = grpc.insecure_channel('books.grpc.kb2.1ad.ru:50051')
-    # channel = grpc.insecure_channel('n4.adp.vmc.loc:30313')
-    # channel = grpc.insecure_channel('n2.adp.vmc.loc:31846')
+    channel = grpc.insecure_channel('localhost:8083')
+    # channel = grpc.insecure_channel('books.grpc.kb3.1ad.ru')
     stub = hello_pb2_grpc.HelloServiceStub(channel)
 
     # metadata = [("x-api-key", "AIzaSyBOvwjnUe4CDrmm7RftN4QhRg_J2a-TpL4")]
