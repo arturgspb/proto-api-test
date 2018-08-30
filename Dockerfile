@@ -1,4 +1,4 @@
-FROM grpc/python:1.11-onbuild
+FROM grpc/python:1.4-onbuild
 
 # https://stackoverflow.com/questions/41818226/docker-python-custom-module-not-found
 ENV PYTHONPATH /usr/src/app
