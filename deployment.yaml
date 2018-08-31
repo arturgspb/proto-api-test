@@ -8,10 +8,14 @@ metadata:
     release: grpc-hello
 spec:
   ports:
-  - port: 9994
+  - port: 9000
     targetPort: 9000
     protocol: TCP
     name: http
+  - port: 9001
+    targetPort: 9001
+    protocol: TCP
+    name: grpc
   selector:
     app: grpc-hello
 ---
@@ -38,6 +42,7 @@ spec:
         image: gcr.io/endpoints-release/endpoints-runtime:1
         args: [
           "--http_port=9000",
+          "--http2_port=9001",
           "--backend=grpc://127.0.0.1:50051",
           "--service=bookstore.endpoints.meta-test-164215.cloud.goog",
           "--service_account_key=/etc/nginx/creds/service-account-creds.json",
@@ -45,6 +50,7 @@ spec:
         ]
         ports:
           - containerPort: 9000
+          - containerPort: 9001
         volumeMounts:
           - mountPath: /etc/nginx/creds
             name: service-account-creds

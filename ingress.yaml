@@ -6,6 +6,9 @@ metadata:
   labels:
     app: grpc-hello
     release: grpc-hello
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.protocol: h2c
 spec:
   rules:
   - host: books.grpc.kb.1ad.ru
@@ -14,4 +17,11 @@ spec:
       - path: /
         backend:
           serviceName: grpc-hello-service
-          servicePort: 9994
+          servicePort: 9000
+  - host: books-grpc.grpc.kb.1ad.ru
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grpc-hello-service
+          servicePort: 9001
