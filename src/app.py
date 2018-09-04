@@ -26,7 +26,6 @@ class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
                 print(u"md.value = %s" % str())
         print(u"user_info = %s" % str(user_info))
 
-
         email = user_info['email']
 
         return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name + ". Email: " + email)
