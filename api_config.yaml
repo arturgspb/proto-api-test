@@ -27,6 +27,10 @@ authentication:
   - selector: "*"
     requirements:
       - provider_id: google_service_account
+#    oauth:
+#      canonical_scopes: "meta.metaql"
+  - selector: "helloapi.HelloService.Health"
+    allow_without_credential: true
 
 metrics:
   - name: "ReadCallLimits"

@@ -20,11 +20,59 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='hello.proto',
   package='helloapi',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bhello.proto\x12\x08helloapi\x1a\x1cgoogle/api/annotations.proto\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xb2\x01\n\x0cHelloService\x12P\n\x04\x45\x63ho\x12\x15.helloapi.EchoRequest\x1a\x16.helloapi.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/echo:\x01*\x12P\n\x04Ping\x12\x15.helloapi.PingRequest\x1a\x16.helloapi.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/ping:\x01*B\x02P\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0bhello.proto\x12\x08helloapi\x1a\x1cgoogle/api/annotations.proto\"\x0e\n\x0c\x45mptyRequest\"\x0f\n\rEmptyResponse\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xfe\x01\n\x0cHelloService\x12J\n\x06Health\x12\x16.helloapi.EmptyRequest\x1a\x17.helloapi.EmptyResponse\"\x0f\x82\xd3\xe4\x93\x02\t\x12\x07/health\x12P\n\x04\x45\x63ho\x12\x15.helloapi.EchoRequest\x1a\x16.helloapi.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/echo:\x01*\x12P\n\x04Ping\x12\x15.helloapi.PingRequest\x1a\x16.helloapi.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/ping:\x01*B\x02P\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
 
+
+
+_EMPTYREQUEST = _descriptor.Descriptor(
+  name='EmptyRequest',
+  full_name='helloapi.EmptyRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=55,
+  serialized_end=69,
+)
+
+
+_EMPTYRESPONSE = _descriptor.Descriptor(
+  name='EmptyResponse',
+  full_name='helloapi.EmptyResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=71,
+  serialized_end=86,
+)
 
 
 _ECHOREQUEST = _descriptor.Descriptor(
@@ -53,8 +101,8 @@ _ECHOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=55,
-  serialized_end=82,
+  serialized_start=88,
+  serialized_end=115,
 )
 
 
@@ -91,8 +139,8 @@ _ECHORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=84,
-  serialized_end=131,
+  serialized_start=117,
+  serialized_end=164,
 )
 
 
@@ -122,8 +170,8 @@ _PINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=133,
-  serialized_end=160,
+  serialized_start=166,
+  serialized_end=193,
 )
 
 
@@ -153,15 +201,31 @@ _PINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=162,
-  serialized_end=190,
+  serialized_start=195,
+  serialized_end=223,
 )
 
+DESCRIPTOR.message_types_by_name['EmptyRequest'] = _EMPTYREQUEST
+DESCRIPTOR.message_types_by_name['EmptyResponse'] = _EMPTYRESPONSE
 DESCRIPTOR.message_types_by_name['EchoRequest'] = _ECHOREQUEST
 DESCRIPTOR.message_types_by_name['EchoResponse'] = _ECHORESPONSE
 DESCRIPTOR.message_types_by_name['PingRequest'] = _PINGREQUEST
 DESCRIPTOR.message_types_by_name['PingResponse'] = _PINGRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), dict(
+  DESCRIPTOR = _EMPTYREQUEST,
+  __module__ = 'hello_pb2'
+  # @@protoc_insertion_point(class_scope:helloapi.EmptyRequest)
+  ))
+_sym_db.RegisterMessage(EmptyRequest)
+
+EmptyResponse = _reflection.GeneratedProtocolMessageType('EmptyResponse', (_message.Message,), dict(
+  DESCRIPTOR = _EMPTYRESPONSE,
+  __module__ = 'hello_pb2'
+  # @@protoc_insertion_point(class_scope:helloapi.EmptyResponse)
+  ))
+_sym_db.RegisterMessage(EmptyResponse)
 
 EchoRequest = _reflection.GeneratedProtocolMessageType('EchoRequest', (_message.Message,), dict(
   DESCRIPTOR = _ECHOREQUEST,
@@ -201,13 +265,22 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=193,
-  serialized_end=371,
+  serialized_start=226,
+  serialized_end=480,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Health',
+    full_name='helloapi.HelloService.Health',
+    index=0,
+    containing_service=None,
+    input_type=_EMPTYREQUEST,
+    output_type=_EMPTYRESPONSE,
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\t\022\007/health')),
+  ),
   _descriptor.MethodDescriptor(
     name='Echo',
     full_name='helloapi.HelloService.Echo',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_ECHOREQUEST,
     output_type=_ECHORESPONSE,
@@ -216,7 +289,7 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='Ping',
     full_name='helloapi.HelloService.Ping',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_PINGREQUEST,
     output_type=_PINGRESPONSE,

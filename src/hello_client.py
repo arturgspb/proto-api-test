@@ -56,16 +56,16 @@ def run():
     print(auth_token)
     HEADER = "Bearer " + auth_token
 
+    def do_rest():
+        import requests
+        resp = requests.post("http://grpc-test.gcloud.1ad.ru/v1/hello/ping", json={
+            "ping": "Hi, PING!"
+        }, headers={
+            "Authorization": HEADER
+        })
+        print(u"resp.text = %s" % str(resp.text))
 
-    # def do_rest():
-    #     import requests
-    #     resp = requests.post("http://books.grpc.kb.1ad.ru/v1/hello/ping", json={
-    #         "ping": "Hi, PING!"
-    #     }, headers={
-    #         "Authorization": HEADER
-    #     })
-    #     print(u"resp.text = %s" % str(resp.text))
-    # # for t in range(2):
+    # for t in range(2):
 
     def do_grpc():
         # channel = grpc.insecure_channel('books-grpc.grpc.kb.1ad.ru')
@@ -73,6 +73,12 @@ def run():
         stub = hello_pb2_grpc.HelloServiceStub(channel)
 
         metadata = [("authorization", HEADER)]
+        print(metadata)
+        resp = stub.Health(
+            hello_pb2.EmptyRequest()
+        )
+        print(u"resp = %s" % str(resp))
+
         resp = stub.Ping(
             hello_pb2.PingRequest(ping="lala")
             , metadata=metadata
@@ -82,6 +88,8 @@ def run():
     # do_rest()
 
     do_grpc()
+
+
 #
 
 if __name__ == '__main__':

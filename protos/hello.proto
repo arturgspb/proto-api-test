@@ -8,6 +8,14 @@ import "google/api/annotations.proto";
 // https://cloud.google.com/endpoints/docs/grpc/transcoding
 // curl -d '{"ping":"Music"}' http://localhost:8083/v1/hello/ping
 service HelloService {
+
+   rpc Health (EmptyRequest) returns (EmptyResponse) {
+        option (google.api.http) = {
+          get: "/health"
+        };
+    }
+
+
     rpc Echo (EchoRequest) returns (EchoResponse) {
         option (google.api.http) = {
           post: "/v1/hello/echo"
@@ -21,6 +29,12 @@ service HelloService {
           body: "*"
         };
     }
+}
+
+message EmptyRequest {
+}
+
+message EmptyResponse {
 }
 
 message EchoRequest {

@@ -6,6 +6,8 @@ esp:
 		-I/Users/arturgspb/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--proto_path=protos \
 		--python_out=./src \
+		--mypy_out=./src \
+		--swagger_out=logtostderr=true:./src \
 		--grpc_python_out=./src \
 		--descriptor_set_out=api_descriptor.pb \
 		hello.proto

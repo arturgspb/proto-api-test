@@ -4,6 +4,24 @@ import concurrent.futures
 import google.protobuf.message
 import typing
 
+class EmptyRequest(google.protobuf.message.Message):
+
+    def __init__(self,
+        ) -> None: ...
+    @classmethod
+    def FromString(cls, s: bytes) -> EmptyRequest: ...
+    def MergeFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+    def CopyFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+
+class EmptyResponse(google.protobuf.message.Message):
+
+    def __init__(self,
+        ) -> None: ...
+    @classmethod
+    def FromString(cls, s: bytes) -> EmptyResponse: ...
+    def MergeFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+    def CopyFrom(self, other_msg: google.protobuf.message.Message) -> None: ...
+
 class EchoRequest(google.protobuf.message.Message):
     name = ... # type: typing.Text
 
@@ -52,6 +70,12 @@ class PingResponse(google.protobuf.message.Message):
 
 class HelloService(typing.Any, metaclass=abc.ABCMeta):
     @abc.abstractmethod
+    def Health(self,
+        rpc_controller: typing.Any,
+        request: EmptyRequest,
+        done: typing.Optional[typing.Callable[[EmptyResponse], None]],
+    ) -> concurrent.futures.Future[EmptyResponse]: ...
+    @abc.abstractmethod
     def Echo(self,
         rpc_controller: typing.Any,
         request: EchoRequest,
@@ -65,6 +89,11 @@ class HelloService(typing.Any, metaclass=abc.ABCMeta):
     ) -> concurrent.futures.Future[PingResponse]: ...
 class HelloService_Stub(HelloService):
     def __init__(self, rpc_channel: typing.Any) -> None: ...
+    def Health(self,
+        rpc_controller: typing.Any,
+        request: EmptyRequest,
+        done: typing.Optional[typing.Callable[[EmptyResponse], None]],
+    ) -> concurrent.futures.Future[EmptyResponse]: ...
     def Echo(self,
         rpc_controller: typing.Any,
         request: EchoRequest,

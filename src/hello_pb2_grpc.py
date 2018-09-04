@@ -15,6 +15,11 @@ class HelloServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Health = channel.unary_unary(
+        '/helloapi.HelloService/Health',
+        request_serializer=hello__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=hello__pb2.EmptyResponse.FromString,
+        )
     self.Echo = channel.unary_unary(
         '/helloapi.HelloService/Echo',
         request_serializer=hello__pb2.EchoRequest.SerializeToString,
@@ -31,6 +36,13 @@ class HelloServiceServicer(object):
   """https://cloud.google.com/endpoints/docs/grpc/transcoding
   curl -d '{"ping":"Music"}' http://localhost:8083/v1/hello/ping
   """
+
+  def Health(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def Echo(self, request, context):
     # missing associated documentation comment in .proto file
@@ -49,6 +61,11 @@ class HelloServiceServicer(object):
 
 def add_HelloServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Health': grpc.unary_unary_rpc_method_handler(
+          servicer.Health,
+          request_deserializer=hello__pb2.EmptyRequest.FromString,
+          response_serializer=hello__pb2.EmptyResponse.SerializeToString,
+      ),
       'Echo': grpc.unary_unary_rpc_method_handler(
           servicer.Echo,
           request_deserializer=hello__pb2.EchoRequest.FromString,
