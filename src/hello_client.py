@@ -85,9 +85,10 @@ def run():
         )
         print(u"resp = %s" % str(resp))
 
-    # do_rest()
+    for t in range(1000):
+        do_rest()
 
-    do_grpc()
+    # do_grpc()
 
 
 #
