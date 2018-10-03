@@ -18,7 +18,7 @@ authentication:
   - id: google_service_account
     issuer: "token-issuer.devision.io"
     audiences: "apis.devision.io"
-    jwks_uri: "https://www.googleapis.com/robot/v1/metadata/x509/token-issuer@devision-io.iam.gserviceaccount.com"
+    jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/token-issuer@devision-io.iam.gserviceaccount.com"
   rules:
   - selector: "*"
     requirements:
