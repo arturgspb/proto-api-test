@@ -1,12 +1,9 @@
-# https://cloud.google.com/endpoints/docs/grpc/quotas-configure
-
 type: google.api.Service
 config_version: 3
 
-name: bookstore.endpoints.meta-test-164215.cloud.goog
+name: hello.endpoints.devision-io.cloud.goog
 
-
-title: Bookstore gRPC API
+title: hello.api.devision.io
 apis:
 - name: helloapi.HelloService
 
@@ -17,34 +14,12 @@ usage:
     allow_unregistered_calls: true
 
 authentication:
-  # https://github.com/googleapis/googleapis/blob/master/google/api/auth.proto
   providers:
   - id: google_service_account
-    issuer: "jwt-client.endpoints.sample.google.com"
-    audiences: "bookstore.endpoints.meta-test-164215.cloud.goog"
-    jwks_uri: "https://www.googleapis.com/robot/v1/metadata/x509/test-esp@meta-test-164215.iam.gserviceaccount.com"
+    issuer: "token-issuer.devision.io"
+    audiences: "apis.devision.io"
+    jwks_uri: "https://www.googleapis.com/robot/v1/metadata/x509/token-issuer@devision-io.iam.gserviceaccount.com"
   rules:
   - selector: "*"
     requirements:
       - provider_id: google_service_account
-#    oauth:
-#      canonical_scopes: "meta.metaql"
-  - selector: "helloapi.HelloService.Health"
-    allow_without_credential: true
-
-metrics:
-  - name: "ReadCallLimits"
-    display_name: "Read requests"
-    value_type: INT64
-    metric_kind: DELTA
-quota:
-  limits:
-    - name: "read-limit"
-      metric: "ReadCallLimits"
-      unit: "1/min/{project}"
-      values:
-        STANDARD: 100
-  metric_rules:
-    - selector: "*"
-      metric_costs:
-        "ReadCallLimits": 1

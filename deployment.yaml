@@ -32,9 +32,9 @@ spec:
         release: grpc-hello
     spec:
       volumes:
-        - name: service-account-creds
+        - name: devision-token-issuer
           secret:
-            secretName: service-account-creds
+            secretName: devision-token-issuer
       imagePullSecrets:
         - name: registry-secret
       containers:
@@ -44,8 +44,8 @@ spec:
           "--http_port=9000",
           "--http2_port=9001",
           "--backend=grpc://127.0.0.1:50051",
-          "--service=bookstore.endpoints.meta-test-164215.cloud.goog",
-          "--service_account_key=/etc/nginx/creds/service-account-creds.json",
+          "--service=hello.endpoints.devision-io.cloud.goog",
+          "--service_account_key=/etc/nginx/creds/devision-token-issuer.json",
           "--rollout_strategy=managed",
         ]
         ports:
@@ -53,9 +53,27 @@ spec:
           - containerPort: 9001
         volumeMounts:
           - mountPath: /etc/nginx/creds
-            name: service-account-creds
+            name: devision-token-issuer
             readOnly: true
       - name: python-grpc-hello
         image: apisgarpun/apis:apiproxyt--v1-latest
         ports:
           - containerPort: 50051
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grpc-hello-service
+  namespace: apis
+  labels:
+    app: grpc-hello
+    release: grpc-hello
+spec:
+  rules:
+  - host: hello.apis.kb.1ad.ru
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grpc-hello-service
+          servicePort: 9000

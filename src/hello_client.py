@@ -35,8 +35,8 @@ def generate_jwt(service_account_file, issuer, audiences):
 
         # sub and email are mapped to the user id and email respectively.
         'sub': '12345678',
-        'email': 'user@example.com',
-        'scp': "meta.metaql,userinfo.profile"
+        # 'email': 'user@example.com',
+        'scope': "meta.metaql userinfo.profile"
     }
 
     signed_jwt = google.auth.jwt.encode(signer, payload)
@@ -44,53 +44,49 @@ def generate_jwt(service_account_file, issuer, audiences):
 
 
 def get_token():
-    sec_file = '/Users/arturgspb/esp/test-esp-service-account-creds.json'
-    issuer = "jwt-client.endpoints.sample.google.com"
-    jwt_key = generate_jwt(sec_file, issuer, audiences="bookstore.endpoints.meta-test-164215.cloud.goog")
+    sec_file = '/Users/arturgspb/Documents/devision-token-issuer.json'
+    jwt_key = generate_jwt(sec_file, issuer="token-issuer.devision.io", audiences="apis.devision.io")
+    # jwt_key = generate_jwt(sec_file, issuer="token-issuer@devision-io.iam.gserviceaccount.com", audiences="https://oauth2.googleapis.com/token")
     access_token = jwt_key.decode("utf-8")
     return access_token
 
 
 def run():
     auth_token = get_token()
+    auth_token="eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhcGlzLmRldmlzaW9uLmlvIiwic3ViIjoiMzQ4NyIsInNjb3BlIjoiYXNkYXNkIGFzZGFzZCIsImlzcyI6InRva2VuLWlzc3Vlci5kZXZpc2lvbi5pbyIsImV4cCI6MTUzODU5MjQ5OSwiaWF0IjoxNTM4NTkyMTk5fQ.Hv6C1JmNH4xo9Uyb4r-FimpbvdAtEPh9HB3uccXXSh6FoRiCpWN-ul8wh0zgpzXNLCanAWjCcQvzeWIQTUXv_EZfzXS15cYThwffBsUWT5Xhbs7pcs9rggfYy1PurXYCTjgQf-BrvdLRE_2A-MpP3vAz-6srXdufv_5HnWHTxbb4J-02cvzdtNwXYgRE3tbDfz-OH-DZfMpVm18cEHVocWu0H1k-Y14EeqSHDz1qmjor9M3-BJLQIHtLYS5RasMr8muS-qRU-X_D4O09gLAVU4u0aQqqvwBMJMBtSbmsb1UtKfNrmoXcdRZltqWHAzjrf3bKrntl16YIIkH09m5BAg"
     print(auth_token)
+
     HEADER = "Bearer " + auth_token
+
 
     def do_rest():
         import requests
-        resp = requests.post("http://grpc-test.gcloud.1ad.ru/v1/hello/ping", json={
+        resp = requests.post("http://hello.apis.kb.1ad.ru/v1/hello/ping", json={
             "ping": "Hi, PING!"
         }, headers={
             "Authorization": HEADER
         })
         print(u"resp.text = %s" % str(resp.text))
-
     # for t in range(2):
 
-    def do_grpc():
-        # channel = grpc.insecure_channel('books-grpc.grpc.kb.1ad.ru')
-        channel = grpc.insecure_channel('localhost:8083')
-        stub = hello_pb2_grpc.HelloServiceStub(channel)
+    # def do_grpc():
+    #     # channel = grpc.insecure_channel('books-grpc.grpc.kb.1ad.ru')
+    #     channel = grpc.insecure_channel('localhost:8083')
+    #     stub = hello_pb2_grpc.HelloServiceStub(channel)
+    #
+    #     metadata = [("authorization", HEADER)]
+    #
+    #     hello_pb2.EchoRequest(name="asdasd")
+    #
+    #     resp = stub.Ping(
+    #         hello_pb2.PingRequest(ping="lala")
+    #         , metadata=metadata
+    #     )
+    #     print(u"resp = %s" % str(resp))
 
-        metadata = [("authorization", HEADER)]
-        print(metadata)
-        resp = stub.Health(
-            hello_pb2.EmptyRequest()
-        )
-        print(u"resp = %s" % str(resp))
-
-        resp = stub.Ping(
-            hello_pb2.PingRequest(ping="lala")
-            , metadata=metadata
-        )
-        print(u"resp = %s" % str(resp))
-
-    for t in range(1000):
-        do_rest()
+    do_rest()
 
     # do_grpc()
-
-
 #
 
 if __name__ == '__main__':

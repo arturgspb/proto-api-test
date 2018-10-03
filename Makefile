@@ -12,7 +12,7 @@ esp:
 		--descriptor_set_out=api_descriptor.pb \
 		hello.proto
 
-	gcloud endpoints services deploy api_descriptor.pb api_config.yaml --project meta-test-164215
+	gcloud endpoints services deploy api_descriptor.pb api_config.yaml --project devision-io
 
 	rm api_descriptor.pb
 
@@ -35,7 +35,3 @@ dev:
 kube:
 	kubectl delete deployment grpc-hello
 	kubectl apply -f deployment.yaml
-
-ing:
-	#kubectl delete ingress grpc-hello-service
-	kubectl create -f ingress.yaml
