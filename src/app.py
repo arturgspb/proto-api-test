@@ -5,38 +5,20 @@ import time
 
 import grpc
 
+from src.v1_routes import reg_server_v1
+from src.v2_routes import reg_server_v2
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
-
-class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
-    def Health(self, request, context):
-        return hello_pb2.EmptyResponse()
-
-    def Ping(self, request: hello_pb2.PingRequest, context):
-        return hello_pb2.PingResponse(ping="pong!")
-
-    def Echo(self, request: hello_pb2.EchoRequest, context):
-        print("Echo req")
-        user_info = None
-        imd = context.invocation_metadata()
-        for md in imd:
-            if md.key == 'x-endpoint-api-userinfo':
-                user_info = json.loads(base64.b64decode(md.value))
-                print(u"md.value = %s" % str())
-        print(u"user_info = %s" % str(user_info))
-
-        email = user_info['email']
-
-        return hello_pb2.EchoResponse(server_id="myid", name="Hello, " + request.name + ". Email: " + email)
 
 
 def serve(port: int, grace_period: int):
     # header_validator = RequestHeaderValidatorInterceptor()
     header_validator = None
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=header_validator)
-    hello_pb2_grpc.add_HelloServiceServicer_to_server(
-        RouteGuideServicer(), server)
+    reg_server_v1(server)
+    reg_server_v2(server)
+    # src.v1.hello_pb2_grpc.add_HelloServicer_to_server(RouteGuideServicerV1(), server)
+    # src.v2.hello_pb2_grpc.add_HelloServicer_to_server(RouteGuideServicerV2(), server)
     server.add_insecure_port('[::]:{}'.format(port))
     server.start()
 

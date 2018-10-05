@@ -19,19 +19,17 @@ esp:
 
 dev:
 	docker run \
-		--name="esp" \
+		--rm \
 		--publish=8083:8083 \
 		--publish=8084:8084 \
 		--volume=/Users/arturgspb/esp:/esp \
 		gcr.io/endpoints-release/endpoints-runtime:1 \
-		--service=bookstore.endpoints.meta-test-164215.cloud.goog \
+		--service=artur-hello.endpoints.meta-test-164215.cloud.goog \
 		--rollout_strategy=managed \
 		--http_port=8084 \
 		--http2_port=8083 \
 		--backend=grpc://docker.for.mac.localhost:50051 \
 		--service_account_key=/esp/test-esp-service-account-creds.json
-
-	docker rm esp
 
 kube:
 	kubectl delete deployment grpc-hello
