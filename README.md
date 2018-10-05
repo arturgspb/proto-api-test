@@ -50,3 +50,12 @@ https://cloud.google.com/endpoints/docs/openapi/authenticating-users#configuring
 https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
 https://cloud.google.com/endpoints/docs/grpc/authentication-method
 
+
+
+# Структура
+
+- doc
+- proto
+  - {service}.proto - основной файл, с которого будет собираться proto с описанием сервиса, а так же генерироваться код
+- src
+- {service}.yaml

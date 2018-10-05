@@ -1,3 +1,6 @@
+init:
+	git clone https://github.com/googleapis/googleapis ~/googleapis
+
 esp:
 	# Cloud Endpoints
 	python3 -m grpc.tools.protoc \
@@ -7,14 +10,12 @@ esp:
 		--proto_path=protos \
 		--python_out=./src \
 		--mypy_out=./src \
-		--swagger_out=logtostderr=true:./src \
 		--grpc_python_out=./src \
 		--descriptor_set_out=api_descriptor.pb \
 		hello.proto
 
-	gcloud endpoints services deploy api_descriptor.pb api_config.yaml --project devision-io
-
-	rm api_descriptor.pb
+	#gcloud endpoints services deploy api_descriptor.pb api_config.yaml --project devision-io
+	#rm api_descriptor.pb
 
 dev:
 	docker run \

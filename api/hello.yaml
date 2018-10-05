@@ -1,0 +1,24 @@
+type: google.api.Service
+config_version: 3
+
+name: {service}.endpoints.{project}.cloud.goog
+title: {service}.apis.devision.io
+apis:
+- name: devision.hello.v1.Hello
+- name: devision.hello.v2.Hello
+
+#usage:
+#  rules:
+#  - selector: "*"
+#    allow_unregistered_calls: false
+
+authentication:
+  providers:
+  - id: google_service_account
+    issuer: "token-issuer.devision.io"
+    audiences: "apis.devision.io"
+    jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/token-issuer@{project}.iam.gserviceaccount.com"
+  rules:
+  - selector: "*"
+    requirements:
+      - provider_id: google_service_account

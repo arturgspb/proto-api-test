@@ -5,14 +5,11 @@ import time
 
 import grpc
 
-from src import hello_pb2_grpc
-from src import hello_pb2
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
-
     def Health(self, request, context):
         return hello_pb2.EmptyResponse()
 
@@ -35,7 +32,9 @@ class RouteGuideServicer(hello_pb2_grpc.HelloServiceServicer):
 
 
 def serve(port: int, grace_period: int):
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    # header_validator = RequestHeaderValidatorInterceptor()
+    header_validator = None
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=header_validator)
     hello_pb2_grpc.add_HelloServiceServicer_to_server(
         RouteGuideServicer(), server)
     server.add_insecure_port('[::]:{}'.format(port))
