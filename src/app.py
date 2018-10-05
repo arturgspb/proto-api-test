@@ -1,5 +1,3 @@
-import base64
-import json
 from concurrent import futures
 import time
 
@@ -17,8 +15,6 @@ def serve(port: int, grace_period: int):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=header_validator)
     reg_server_v1(server)
     reg_server_v2(server)
-    # src.v1.hello_pb2_grpc.add_HelloServicer_to_server(RouteGuideServicerV1(), server)
-    # src.v2.hello_pb2_grpc.add_HelloServicer_to_server(RouteGuideServicerV2(), server)
     server.add_insecure_port('[::]:{}'.format(port))
     server.start()
 
