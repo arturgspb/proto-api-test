@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='v2/hello.proto',
   package='devision.hello.v2',
   syntax='proto3',
-  serialized_pb=_b('\n\x0ev2/hello.proto\x12\x11\x64\x65vision.hello.v2\x1a\x1cgoogle/api/annotations.proto\"\x0e\n\x0c\x45mptyRequest\"\x0f\n\rEmptyResponse\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xad\x02\n\x05Hello\x12\\\n\x06Health\x12\x1f.devision.hello.v2.EmptyRequest\x1a .devision.hello.v2.EmptyResponse\"\x0f\x82\xd3\xe4\x93\x02\t\x12\x07/health\x12\x62\n\x04\x45\x63ho\x12\x1e.devision.hello.v2.EchoRequest\x1a\x1f.devision.hello.v2.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v2/hello/echo:\x01*\x12\x62\n\x04Ping\x12\x1e.devision.hello.v2.PingRequest\x1a\x1f.devision.hello.v2.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v2/hello/ping:\x01*BC\n\x14io.devision.hello.v2B\x12HelloServicesProtoP\x01\x88\x01\x01\xca\x02\x11\x44\x65vision\\Hello\\V2b\x06proto3')
+  serialized_pb=_b('\n\x0ev2/hello.proto\x12\x11\x64\x65vision.hello.v2\x1a\x1cgoogle/api/annotations.proto\"\x0e\n\x0c\x45mptyRequest\"\x0f\n\rEmptyResponse\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xb0\x02\n\x05Hello\x12_\n\x06Health\x12\x1f.devision.hello.v2.EmptyRequest\x1a .devision.hello.v2.EmptyResponse\"\x12\x82\xd3\xe4\x93\x02\x0c\x12\n/v2/health\x12\x62\n\x04\x45\x63ho\x12\x1e.devision.hello.v2.EchoRequest\x1a\x1f.devision.hello.v2.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v2/hello/echo:\x01*\x12\x62\n\x04Ping\x12\x1e.devision.hello.v2.PingRequest\x1a\x1f.devision.hello.v2.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v2/hello/ping:\x01*BC\n\x14io.devision.hello.v2B\x12HelloServicesProtoP\x01\x88\x01\x01\xca\x02\x11\x44\x65vision\\Hello\\V2b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
@@ -266,7 +266,7 @@ _HELLO = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=238,
-  serialized_end=539,
+  serialized_end=542,
   methods=[
   _descriptor.MethodDescriptor(
     name='Health',
@@ -275,7 +275,7 @@ _HELLO = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_EMPTYREQUEST,
     output_type=_EMPTYRESPONSE,
-    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\t\022\007/health')),
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\014\022\n/v2/health')),
   ),
   _descriptor.MethodDescriptor(
     name='Echo',

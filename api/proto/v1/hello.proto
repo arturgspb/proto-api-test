@@ -19,7 +19,7 @@ service Hello {
 
     rpc Echo (EchoRequest) returns (EchoResponse) {
         option (google.api.http) = {
-          post: "/v1/hello/echoxx"
+          post: "/v1/hello/echo"
           body: "*"
         };
     }

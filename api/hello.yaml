@@ -1,11 +1,15 @@
 type: google.api.Service
 config_version: 3
 
-name: {service}.endpoints.{project}.cloud.goog
-title: {service}.apis.devision.io
+name: {SERVICE_ID}.endpoints.{PROJECT_ID}.cloud.goog
+title: {SERVICE_ID}.apis.devision.io
 apis:
 - name: devision.hello.v1.Hello
 - name: devision.hello.v2.Hello
+
+documentation:
+  summary: >
+    Hello API for tests and examples.
 
 usage:
   rules:
@@ -22,3 +26,22 @@ authentication:
   - selector: "*"
     requirements:
       - provider_id: google_service_account
+  - selector: "devision.hello.v2.Hello.Health"
+    allow_without_credential: true
+
+metrics:
+  - name: "ReadCallLimits"
+    display_name: "Read requests"
+    value_type: INT64
+    metric_kind: DELTA
+quota:
+  limits:
+    - name: "read-limit"
+      metric: "ReadCallLimits"
+      unit: "1/min/{project}"
+      values:
+        STANDARD: 10000
+  metric_rules:
+    - selector: "*"
+      metric_costs:
+        "ReadCallLimits": 1

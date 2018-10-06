@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='v1/hello.proto',
   package='devision.hello.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0ev1/hello.proto\x12\x11\x64\x65vision.hello.v1\x1a\x1cgoogle/api/annotations.proto\"\x0e\n\x0c\x45mptyRequest\"\x0f\n\rEmptyResponse\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xd1\x01\n\x05Hello\x12\x64\n\x04\x45\x63ho\x12\x1e.devision.hello.v1.EchoRequest\x1a\x1f.devision.hello.v1.EchoResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/hello/echoxx:\x01*\x12\x62\n\x04Ping\x12\x1e.devision.hello.v1.PingRequest\x1a\x1f.devision.hello.v1.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/ping:\x01*BC\n\x14io.devision.hello.v1B\x12HelloServicesProtoP\x01\x88\x01\x01\xca\x02\x11\x44\x65vision\\Hello\\V1b\x06proto3')
+  serialized_pb=_b('\n\x0ev1/hello.proto\x12\x11\x64\x65vision.hello.v1\x1a\x1cgoogle/api/annotations.proto\"\x0e\n\x0c\x45mptyRequest\"\x0f\n\rEmptyResponse\"\x1b\n\x0b\x45\x63hoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"/\n\x0c\x45\x63hoResponse\x12\x11\n\tserver_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\x1b\n\x0bPingRequest\x12\x0c\n\x04ping\x18\x01 \x01(\t\"\x1c\n\x0cPingResponse\x12\x0c\n\x04ping\x18\x01 \x01(\t2\xcf\x01\n\x05Hello\x12\x62\n\x04\x45\x63ho\x12\x1e.devision.hello.v1.EchoRequest\x1a\x1f.devision.hello.v1.EchoResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/echo:\x01*\x12\x62\n\x04Ping\x12\x1e.devision.hello.v1.PingRequest\x1a\x1f.devision.hello.v1.PingResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/hello/ping:\x01*BC\n\x14io.devision.hello.v1B\x12HelloServicesProtoP\x01\x88\x01\x01\xca\x02\x11\x44\x65vision\\Hello\\V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
@@ -266,7 +266,7 @@ _HELLO = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=238,
-  serialized_end=447,
+  serialized_end=445,
   methods=[
   _descriptor.MethodDescriptor(
     name='Echo',
@@ -275,7 +275,7 @@ _HELLO = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ECHOREQUEST,
     output_type=_ECHORESPONSE,
-    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\025\"\020/v1/hello/echoxx:\001*')),
+    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\023\"\016/v1/hello/echo:\001*')),
   ),
   _descriptor.MethodDescriptor(
     name='Ping',
