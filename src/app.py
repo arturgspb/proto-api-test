@@ -11,10 +11,11 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 def serve(port: int, grace_period: int):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    reg_server_v1(server)
-    reg_server_v2(server)
     server.add_insecure_port('[::]:{}'.format(port))
     server.start()
+
+    reg_server_v1(server)
+    reg_server_v2(server)
 
     try:
         while True:
