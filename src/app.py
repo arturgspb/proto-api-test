@@ -3,16 +3,14 @@ import time
 
 import grpc
 
-from src.v1_routes import reg_server_v1
-from src.v2_routes import reg_server_v2
+from src.routes_v1 import reg_server_v1
+from src.routes_v2 import reg_server_v2
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
 def serve(port: int, grace_period: int):
-    # header_validator = RequestHeaderValidatorInterceptor()
-    header_validator = None
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=header_validator)
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     reg_server_v1(server)
     reg_server_v2(server)
     server.add_insecure_port('[::]:{}'.format(port))
